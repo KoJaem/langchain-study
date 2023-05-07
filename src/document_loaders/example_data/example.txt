@@ -1,1 +1,3 @@
 My name is KoJaem. I want to be a capable developer.
+I'm doing a study on langchain.
+I am interested in learning new technologies.
