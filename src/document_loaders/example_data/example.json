@@ -1,0 +1,16 @@
+{
+  "1": {
+    "body": "Hello",
+    "from": "wanted",
+    "labels": ["IMPORTANT", "CATEGORY_UPDATES", "INBOX"]
+  },
+  "2": {
+    "body": "Hi",
+    "from": "wanted2",
+    "labels": ["IMPORTANT"],
+    "other": {
+      "name": "jaem",
+      "surname": "ko"
+    }
+  }
+}
