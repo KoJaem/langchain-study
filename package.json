@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.1.0",
     "@types/styled-components": "^5.1.26",
     "axios": "^1.4.0",
     "langchain": "^0.0.71",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "styled-components": "^5.3.5"
+    "react-hook-form": "^7.43.9",
+    "styled-components": "^5.3.5",
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "@types/node": "18.7.14",
