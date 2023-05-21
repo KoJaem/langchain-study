@@ -6,6 +6,7 @@ import { Message } from 'src/types/chat';
 import { FieldValues, useForm } from 'react-hook-form';
 import { object, string } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { customColor } from '~/src/constants';
 
 export const IndexPage = () => {
   const schema = object().shape({
@@ -22,7 +23,8 @@ export const IndexPage = () => {
   }>({
     messages: [
       {
-        message: 'Hi there. Do you have any questions about me?',
+        // message: 'Hi there. Do you have any questions about KoJaem?',
+        message: '안녕하세요. KoJaem 님에 대해 궁금하신점이 있으신가요?',
         type: 'apiMessage',
       },
     ],
@@ -34,19 +36,6 @@ export const IndexPage = () => {
   const { handleSubmit, register } = useForm({
     resolver: yupResolver(schema),
   });
-
-  // * 내 로직
-
-  //////////////////////////////////////
-
-  // const test = async () => {
-  //   const testRoute = await axios.get('/api/test');
-  //   console.log(testRoute.data);
-  // };
-
-  // useEffect(() => {
-  //   test();
-  // }, []);
 
   const submit = async (data: FieldValues) => {
     try {
@@ -66,7 +55,7 @@ export const IndexPage = () => {
       }));
       setLoading(true);
 
-      const res = await axios.post('/api/chat', {
+      const { data: res } = await axios.post('/api/chat', {
         question,
         history,
       });
@@ -77,11 +66,11 @@ export const IndexPage = () => {
           ...state.messages,
           {
             type: 'apiMessage',
-            message: data.text,
-            sourceDocs: data.sourceDocuments,
+            message: res.text,
+            sourceDocs: res.sourceDocuments,
           },
         ],
-        history: [...state.history, [question, data.text]],
+        history: [...state.history, [question, res.text]],
       }));
 
       console.log('messageState', messageState);
@@ -99,20 +88,49 @@ export const IndexPage = () => {
   }, [messageState]);
   return (
     <Container>
-      <Typography size="16">IndexPage</Typography>
-      <form onSubmit={handleSubmit(submit)}>
-        <textarea
-          placeholder={
-            loading
-              ? 'Waiting for response...'
-              : 'What is this legal case about?'
-          }
-          {...register('question')}
-        />
-        <button type="submit">보내기 버튼</button>
-      </form>
+      <Wrapper>
+        <MessageBox>
+          {messages.map((message, index) =>
+            message.type === 'apiMessage' ? (
+              <p key={index} style={{ color: 'blue' }}>
+                {message.message}
+              </p>
+            ) : (
+              <p key={index} style={{ color: 'green' }}>
+                {message.message}
+              </p>
+            ),
+          )}
+        </MessageBox>
+        <form onSubmit={handleSubmit(submit)}>
+          <textarea
+            placeholder={
+              loading
+                ? 'Waiting for response...'
+                : 'What is this legal case about?'
+            }
+            {...register('question')}
+          />
+          <button type="submit">보내기 버튼</button>
+        </form>
+      </Wrapper>
     </Container>
   );
 };
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: ${customColor.gray}80;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 800px;
+`;
+
+const MessageBox = styled.div``;

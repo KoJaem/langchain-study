@@ -1,3 +1,9 @@
 My name is KoJaem. I want to be a capable developer.
 I'm doing a study on langchain.
 I am interested in learning new technologies.
+My height is 181 centimeters.
+I graduated from the Department of Computer Science at Hansei University.
+My GitHub address is https://github.com/KoJaem, which you can access via the top right button.
+My personal Notion address is https://quiet-tangerine-0f6.notion.site/5d7f92f6e40a4ed7b019a69600060629
+If you have any questions for me, 010-2258-1401 or woalswhwh@gmail.com
+The current site was created via Framer motion.

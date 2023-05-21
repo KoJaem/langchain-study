@@ -6,8 +6,8 @@ import { makeChain } from '@/utils/makechain';
 // import { PINECONE_INDEX_NAME, PINECONE_NAME_SPACE } from '@/config/pinecone';
 
 import { TextLoader } from 'langchain/document_loaders/fs/text';
-import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
-import { Document } from 'langchain/document';
+// import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
+// import { Document } from 'langchain/document';
 import { MemoryVectorStore } from 'langchain/vectorstores/memory';
 
 
@@ -36,14 +36,14 @@ export default async function handler(
 
     const textDocs = await textLoader.load();
 
-    const splitter = new RecursiveCharacterTextSplitter({
-      chunkSize: 20, // 청크 글자 수 제한
-      chunkOverlap: 10, // 겹쳐지는 수
-    });
+    // const splitter = new RecursiveCharacterTextSplitter({
+    //   chunkSize: 20, // 청크 글자 수 제한
+    //   chunkOverlap: 10, // 겹쳐지는 수
+    // });
 
-    const docOutput = await splitter.splitDocuments([
-      new Document({ pageContent: textDocs[0].pageContent }),
-    ]);
+    // const docOutput = await splitter.splitDocuments([
+    //   new Document({ pageContent: textDocs[0].pageContent }),
+    // ]);
 
     const vectorStore = await MemoryVectorStore.fromDocuments(
       textDocs,
